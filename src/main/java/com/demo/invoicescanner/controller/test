@@ -1,0 +1,14 @@
+{
+"sellerName": "random seller",
+"buyerName": "random buyer",
+"invoiceNumber": "ABC12132",
+"invoiceDate": "11/11/2011",
+"invoiceStatus": true,
+               
+"items" : [{
+    "productName":  "sample",   
+    "productDescription":  "some description",   
+    "quantity": 2,
+    "price":  2.0 
+}]
+}
