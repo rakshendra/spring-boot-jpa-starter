@@ -22,13 +22,22 @@ public class CustomerInvoiceServiceImpl implements CustomerInvoiceService {
     @Override
     public void uploadInvoice(CustomerInvoice invoice) {
         customerInvoiceRepository.save(invoice);
+        for(Item item : invoice.getItems()){
+            itemsRepository.save(item);
+        }
     }
 
     @Override
     public CustomerInvoice getInvoice(long id) {
         Optional<CustomerInvoice> invoice = customerInvoiceRepository.findById(id);
-        //Optional<List<Item>> items = itemsRepository.findAll();
+        List<Item> items = itemsRepository.findByInvoiceId(invoice.get().getId());
+        invoice.get().setItems(items);
         return invoice.get();
+    }
+
+    @Override
+    public List<Item> getInvoiceItems(long id) {
+        return itemsRepository.findByInvoiceId(id);
     }
 
     @Override

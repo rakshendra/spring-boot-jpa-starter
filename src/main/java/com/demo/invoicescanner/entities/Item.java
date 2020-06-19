@@ -1,5 +1,7 @@
 package com.demo.invoicescanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +10,8 @@ public class Item {
     @Id
     @GeneratedValue
     private long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     @JoinColumn(name="invoice_id", nullable = false)
     private CustomerInvoice invoice;
     @Column(name = "product_name")

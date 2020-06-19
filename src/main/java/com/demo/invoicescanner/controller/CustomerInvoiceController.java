@@ -1,12 +1,15 @@
 package com.demo.invoicescanner.controller;
 
 import com.demo.invoicescanner.entities.CustomerInvoice;
+import com.demo.invoicescanner.entities.Item;
 import com.demo.invoicescanner.service.CustomerInvoiceService;
 import com.demo.invoicescanner.util.InvoiceScannerUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
@@ -28,6 +31,11 @@ public class CustomerInvoiceController {
     @GetMapping(value = "/getInvoice/{id}")
     public CustomerInvoice getInvoice(@PathVariable long id) {
         return operations.getInvoice(id);
+    }
+
+    @GetMapping(value = "/getItems/{id}")
+    public List<Item> getInvoiceItems(@PathVariable long id) {
+        return operations.getInvoiceItems(id);
     }
 
     @GetMapping(value = "/getStatus/{id}")

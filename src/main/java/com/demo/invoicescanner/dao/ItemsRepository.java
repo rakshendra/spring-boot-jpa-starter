@@ -1,8 +1,11 @@
 package com.demo.invoicescanner.dao;
 
-import com.demo.invoicescanner.entities.CustomerInvoice;
 import com.demo.invoicescanner.entities.Item;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ItemsRepository extends JpaRepository<Item, Long> {
+import java.util.List;
+
+public interface ItemsRepository extends CrudRepository<Item, Long> {
+
+    List<Item> findByInvoiceId(long id);
 }

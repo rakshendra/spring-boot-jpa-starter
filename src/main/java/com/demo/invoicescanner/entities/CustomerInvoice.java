@@ -1,5 +1,8 @@
 package com.demo.invoicescanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -18,9 +21,10 @@ public class CustomerInvoice {
     private String invoiceNumber;
     @Column(name = "invoice_date")
     private Date invoiceDate;
-    @Column
+    @Column(name = "status")
     private boolean invoiceStatus;
-    @OneToMany(mappedBy = "invoice")
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Item> items;
 
     public boolean isInvoiceStatus() {
